@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Учебные курсы</title>
+<style>
+body { font-family: Arial; text-align: center; }
+button { padding: 10px; margin: 5px; cursor: pointer; }
+.active { background: lightgreen; }
+</style>
+</head>
+<body>
+
+<h2>Учебные курсы</h2>
+
+<button onclick="show('courses', this)">Курсы</button>
+<button onclick="show('my', this)">Мои курсы</button>
+<button onclick="show('info', this)">Информация</button>
+
+<div id="content"></div>
+
+<script>
+let myCourses = [];
+let courses = ["HTML", "CSS", "JavaScript"];
+
+function show(page, btn) {
+    let content = document.getElementById("content");
+    content.replaceChildren();
+
+    document.querySelectorAll("body > button").forEach(b =>
+        b.classList.remove("active")
+    );
+    btn.classList.add("active");
+
+    if (page === "courses") {
+        courses.forEach(course => {
+            let b = document.createElement("button");
+            b.textContent = "Записаться: " + course;
+
+            b.addEventListener("click", () => {
+                if (!myCourses.includes(course)) {
+                    myCourses.push(course);
+                }
+                b.textContent = "Вы записаны";
+            });
+
+            content.append(b);
+        });
+    }
+
+    if (page === "my") {
+        content.textContent = myCourses.join(", ") || "Курсов пока нет";
+    }
+
+    if (page === "info") {
+        content.textContent = "Бесплатные учебные курсы";
+    }
+}
+
+document.querySelector("button").click();
+</script>
+
+</body>
+</html>
