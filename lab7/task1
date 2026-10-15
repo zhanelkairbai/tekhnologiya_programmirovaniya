@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Визитка студента</title>
+<style>
+body { font-family: Arial; text-align: center; }
+button { padding: 10px; margin: 5px; cursor: pointer; }
+.active { background: lightgreen; }
+</style>
+</head>
+<body>
+
+<h2>Визитка студента</h2>
+
+<button onclick="show('about', this)">О себе</button>
+<button onclick="show('skills', this)">Навыки</button>
+<button onclick="show('contact', this)">Контакты</button>
+
+<p id="content"></p>
+
+<script>
+const pages = {
+    about: "Я студент университета АТУ.",
+    skills: "HTML, CSS, JavaScript",
+    contact: "Email: student@mail.com"
+};
+
+function show(page, btn) {
+    document.getElementById("content").textContent = pages[page];
+
+    document.querySelectorAll("button").forEach(b =>
+        b.classList.remove("active")
+    );
+    btn.classList.add("active");
+}
+
+document.querySelector("button").click();
+</script>
+
+</body>
+</html>
