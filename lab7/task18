@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Панель заказов</title>
+<style>
+body { font-family: Arial; text-align: center; }
+button { padding: 10px; margin: 5px; cursor: pointer; }
+.active { background: lightgreen; }
+</style>
+</head>
+<body>
+
+<h2>Панель заказов</h2>
+
+<button onclick="show('Новые', this)">Новые</button>
+<button onclick="show('В работе', this)">В работе</button>
+<button onclick="show('Готовые', this)">Готовые</button>
+
+<h3 id="count"></h3>
+<div id="content"></div>
+
+<script>
+let orders = [
+    {name: "Заказ 1", status: "Новые"},
+    {name: "Заказ 2", status: "Новые"},
+    {name: "Заказ 3", status: "В работе"}
+];
+
+let current = "Новые";
+
+function show(page, btn) {
+    current = page;
+
+    document.querySelectorAll("body > button").forEach(b =>
+        b.classList.remove("active")
+    );
+    btn.classList.add("active");
+
+    render();
+}
+
+function render() {
+    let content = document.getElementById("content");
+    content.replaceChildren();
+
+    let list = orders.filter(o => o.status === current);
+
+    document.getElementById("count").textContent =
+        "Количество: " + list.length;
+
+    list.forEach(order => {
+        let p = document.createElement("p");
+        p.textContent = order.name + " ";
+
+        if (order.status !== "Готовые") {
+            let btn = document.createElement("button");
+            btn.textContent = "Далее";
+
+            btn.addEventListener("click", () => {
+                order.status = order.status === "Новые"
+                    ? "В работе" : "Готовые";
+                render();
+            });
+
+            p.append(btn);
+        }
+
+        content.append(p);
+    });
+}
+
+document.querySelector("button").click();
+</script>
+
+</body>
+</html>
