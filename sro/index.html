@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Менеджер контактов</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Менеджер контактов</h1>
+    <p>Моя телефонная книга</p>
+
+    <h3>Добавить контакт</h3>
+
+    <input type="text" id="name" placeholder="Имя">
+    <input type="text" id="phone" placeholder="Телефон">
+
+    <select id="group">
+        <option value="Семья">Семья</option>
+        <option value="Друзья">Друзья</option>
+        <option value="Учеба">Учеба</option>
+        <option value="Другое">Другое</option>
+    </select>
+
+    <button onclick="addContact()">Сохранить</button>
+
+    <h3>Поиск контактов</h3>
+
+    <input type="text" id="search"
+    placeholder="Введите имя"
+    oninput="showContacts()">
+
+    <h3>Группы</h3>
+
+    <select id="filter" onchange="showContacts()">
+        <option value="Все">Все</option>
+        <option value="Семья">Семья</option>
+        <option value="Друзья">Друзья</option>
+        <option value="Учеба">Учеба</option>
+        <option value="Другое">Другое</option>
+    </select>
+
+    <h3>Список контактов</h3>
+
+    <ul id="contactList"></ul>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
