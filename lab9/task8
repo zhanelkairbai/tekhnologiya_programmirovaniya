@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Поиск публикаций</title>
+</head>
+<body>
+<h1>Поиск публикаций</h1>
+<button onclick="loadPosts()">Загрузить</button>
+<br><br>
+<input type="text" id="search" placeholder="Введите слово">
+<button onclick="searchPosts()">Поиск</button>
+<div id="result"></div>
+<script>
+let posts = [];
+async function loadPosts() {
+    let result = document.getElementById("result");
+    result.textContent = "Загрузка...";
+    try {
+        let response = await fetch("https://jsonplaceholder.typicode.com/posts");
+        if (!response.ok) {
+            throw new Error("Ошибка");
+        }
+        posts = await response.json();
+        showPosts(posts);
+    } catch (error) {
+        result.textContent = "Ошибка загрузки";
+    }
+}
+function showPosts(list) {
+    let result = document.getElementById("result");
+    result.textContent = "";
+    for (let post of list) {
+        let p = document.createElement("p");
+        p.textContent = post.id + ". " + post.title;
+        result.appendChild(p);
+    }
+}
+function searchPosts() {
+    let word = document.getElementById("search").value.toLowerCase();
+    let filtered = posts.filter(function(post) {
+        return post.title.toLowerCase().includes(word);
+    });
+    showPosts(filtered);
+}
+</script>
+</body>
+</html>
