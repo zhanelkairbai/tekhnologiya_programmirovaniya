@@ -1,0 +1,30 @@
+<h2>Вход в кабинет студента</h2>
+
+<input id="login" placeholder="Логин">
+<input id="pass" type="password" placeholder="Пароль">
+
+<button onclick="enter()">Войти</button>
+<button onclick="exit()">Выйти</button>
+
+<p id="result"></p>
+
+<script>
+function enter() {
+    let login = document.getElementById("login").value;
+    let pass = document.getElementById("pass").value;
+
+    if (login == "" || pass == "") {
+        result.innerHTML = "Заполните все поля";
+    }
+    else if (login == "student" && pass == "1234") {
+        result.innerHTML = "Добро пожаловать, студент!";
+    }
+    else {
+        result.innerHTML = "Неверный логин или пароль";
+    }
+}
+
+function exit() {
+    result.innerHTML = "Вы вышли из аккаунта";
+}
+</script>
