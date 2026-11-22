@@ -1,0 +1,25 @@
+<h2>Вход в систему</h2>
+
+<input id="login" placeholder="Логин">
+<input id="pass" type="password" placeholder="Пароль">
+
+<button onclick="enter()">Войти</button>
+
+<p id="result"></p>
+
+<script>
+function enter() {
+    let login = document.getElementById("login").value;
+    let pass = document.getElementById("pass").value;
+
+    if (login == "student" && pass == "1234") {
+        result.innerHTML = "Вы вошли как студент";
+    }
+    else if (login == "teacher" && pass == "1234") {
+        result.innerHTML = "Вы вошли как преподаватель";
+    }
+    else {
+        result.innerHTML = "Ошибка входа";
+    }
+}
+</script>
