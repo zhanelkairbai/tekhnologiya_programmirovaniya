@@ -1,0 +1,32 @@
+<h2>Система пользователей</h2>
+
+<input id="login" placeholder="Логин">
+
+<button onclick="enter()">Войти</button>
+<button onclick="exit()">Выйти</button>
+
+<p id="result"></p>
+<p id="history"></p>
+
+<script>
+let user = "";
+
+function enter() {
+    user = document.getElementById("login").value;
+
+    if (user == "") {
+        result.innerHTML = "Введите логин";
+    } else {
+        result.innerHTML = "Пользователь " + user + " вошел";
+        history.innerHTML += user + " - вход<br>";
+    }
+}
+
+function exit() {
+    if (user != "") {
+        history.innerHTML += user + " - выход<br>";
+        result.innerHTML = "Вы вышли из системы";
+        user = "";
+    }
+}
+</script>
